@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-function auth(req, res, next) {
+function userAuth(req, res, next) {
   const token = req.headers.token;
 
   if (!token) {
@@ -25,4 +25,4 @@ function auth(req, res, next) {
   }
 }
 
-export default auth;
+export default userAuth;

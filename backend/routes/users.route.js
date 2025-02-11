@@ -1,12 +1,11 @@
 import { Router } from "express";
-import auth from "../middleware/auth.js";
+import userAuth from "../middleware/userAuth.js";
+
 import {
   userSignup,
   userLogin,
   userLogout,
-  purchaseCourse,
-  viewPurchasedCourses,
-  viewAllCourses,
+  purchases,
 } from "../controllers/users.controller.js";
 
 const userRouter = Router();
@@ -17,10 +16,8 @@ userRouter.route("/login").post(userLogin);
 
 userRouter.route("/logout").post(userLogout);
 
-// userRouter.route("/purchase").post(auth, purchaseCourse);
+userRouter.use(userAuth);
 
-// userRouter.route("/allpurchases").get(auth, viewPurchasedCourses);
-
-// userRouter.route("/courses").get(auth, viewAllCourses);
+userRouter.route("/allpurchases").get(purchases);
 
 export default userRouter;

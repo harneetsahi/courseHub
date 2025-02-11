@@ -7,4 +7,17 @@ const adminLogin = async (req, res) => {};
 
 const adminLogout = async (req, res) => {};
 
-export { adminSignup, adminLogin, adminLogout };
+const createCourse = async (req, res) => {};
+
+const deleteCourse = async (req, res) => {};
+
+const editCourse = async (req, res) => {};
+
+export {
+  adminSignup,
+  adminLogin,
+  adminLogout,
+  createCourse,
+  deleteCourse,
+  editCourse,
+};

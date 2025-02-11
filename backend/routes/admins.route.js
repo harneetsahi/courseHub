@@ -1,5 +1,5 @@
 import { Router } from "express";
-import auth from "../middleware/auth.js";
+import adminAuth from "../middleware/adminAuth.js";
 
 import {
   adminSignup,
@@ -18,10 +18,14 @@ adminRouter.route("/login").post(adminLogin);
 
 adminRouter.route("/logout").post(adminLogout);
 
-// adminRouter.route("/create").post(auth, createCourse);
+////!SECTION
 
-// adminRouter.route("/delete").post(auth, deleteCourse);
+adminRouter.use(adminAuth);
 
-// adminRouter.route("/edit").post(auth, editCourse);
+adminRouter.route("/create").post(createCourse);
+
+adminRouter.route("/delete").post(deleteCourse);
+
+adminRouter.route("/edit").post(editCourse);
 
 export default adminRouter;
