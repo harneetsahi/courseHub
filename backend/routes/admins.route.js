@@ -18,10 +18,10 @@ adminRouter.route("/login").post(adminLogin);
 
 adminRouter.route("/logout").post(adminLogout);
 
-adminRouter.route("/create").post(auth, createCourse);
+// adminRouter.route("/create").post(auth, createCourse);
 
-adminRouter.route("/delete").post(auth, deleteCourse);
+// adminRouter.route("/delete").post(auth, deleteCourse);
 
-adminRouter.route("/edit").post(auth, editCourse);
+// adminRouter.route("/edit").post(auth, editCourse);
 
 export default adminRouter;

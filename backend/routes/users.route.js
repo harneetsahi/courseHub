@@ -17,10 +17,10 @@ userRouter.route("/login").post(userLogin);
 
 userRouter.route("/logout").post(userLogout);
 
-userRouter.route("/purchase").post(auth, purchaseCourse);
+// userRouter.route("/purchase").post(auth, purchaseCourse);
 
-userRouter.route("/viewpurchased").post(auth, viewPurchasedCourses);
+// userRouter.route("/allpurchases").get(auth, viewPurchasedCourses);
 
-userRouter.route("/viewall").get(auth, viewAllCourses);
+// userRouter.route("/courses").get(auth, viewAllCourses);
 
 export default userRouter;

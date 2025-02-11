@@ -65,17 +65,4 @@ const userLogout = async (req, res) => {
   // find user id
 };
 
-const purchaseCourse = async (req, res) => {};
-
-const viewPurchasedCourses = async (req, res) => {};
-
-const viewAllCourses = async (req, res) => {};
-
-export {
-  userSignup,
-  userLogin,
-  userLogout,
-  purchaseCourse,
-  viewPurchasedCourses,
-  viewAllCourses,
-};
+export { userSignup, userLogin, userLogout };

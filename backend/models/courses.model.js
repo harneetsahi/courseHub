@@ -10,6 +10,12 @@ const courseSchema = new Schema(
     description: {
       type: String,
       required: true,
+      trim: true,
+    },
+    price: {
+      type: String,
+      required: true,
+      trim: true,
     },
 
     //// TODO: add more categories and maybe move access to purchase schema
