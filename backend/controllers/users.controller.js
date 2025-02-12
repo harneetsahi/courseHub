@@ -1,11 +1,14 @@
 import { UserModel } from "../models/users.model.js";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
+import bcrypt from "bcrypt";
 
 const userSignup = async (req, res) => {
   // input validation
+
   const requiredBody = z.object({
-    name: z.string().min(3).max(100),
+    firstName: z.string().min(3).max(50),
+    lastName: z.string().min(3).max(50),
     email: z.string().email(),
     password: z
       .string()
@@ -31,15 +34,14 @@ const userSignup = async (req, res) => {
   }
 
   // getting user details
-  const name = req.body.name;
-  const email = req.body.email;
-  const password = req.body.password;
+  const { firstName, lastName, email, password } = req.body;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 8);
 
-    const user = await UserModel.create({
-      name,
+    await UserModel.create({
+      firstName,
+      lastName,
       email,
       password: hashedPassword,
     });
@@ -59,13 +61,13 @@ const userLogin = async (req, res) => {
   const password = req.body.password;
 
   try {
-    const user = await UserModel.find({ email });
+    const user = await UserModel.findOne({ email });
 
     if (user) {
       const matchedPassword = await bcrypt.compare(password, user.password);
 
       if (matchedPassword) {
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+        const token = jwt.sign({ id: user._id }, `${process.env.JWT_SECRET}`);
         return res.json({
           message: token,
         });

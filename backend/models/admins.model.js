@@ -2,7 +2,12 @@ import mongoose, { Schema } from "mongoose";
 
 const adminSchema = new Schema(
   {
-    name: {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    lasttName: {
       type: String,
       required: true,
       trim: true,

@@ -13,14 +13,16 @@ const courseSchema = new Schema(
       trim: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
       trim: true,
     },
-
-    //// TODO: add more categories and maybe move access to purchase schema
-    access: {
+    imageUrl: {
       type: String,
+      required: true,
+    },
+    creatorId: {
+      type: Schema.Types.ObjectId,
       required: true,
     },
   },

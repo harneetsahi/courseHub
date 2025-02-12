@@ -20,12 +20,12 @@ adminRouter.route("/logout").post(adminLogout);
 
 ////!SECTION
 
-adminRouter.use(adminAuth);
+adminRouter.use(adminAuth); /// authenticate admin for all following functions
 
-adminRouter.route("/create").post(createCourse);
+adminRouter.route("/course").post(createCourse);
 
-adminRouter.route("/delete").post(deleteCourse);
+adminRouter.route("/course").delete(deleteCourse);
 
-adminRouter.route("/edit").post(editCourse);
+adminRouter.route("/course").put(editCourse);
 
 export default adminRouter;

@@ -2,19 +2,14 @@ import mongoose, { Schema } from "mongoose";
 
 const purchaseSchema = new Schema(
   {
-    title: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    description: {
-      type: String,
+    courseId: {
+      type: Schema.Types.ObjectId,
+      ref: "Course",
       required: true,
     },
-
-    //// TODO: add more categories and maybe move access to purchase schema
-    access: {
-      type: String,
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
   },

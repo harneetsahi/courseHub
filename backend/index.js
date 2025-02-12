@@ -8,6 +8,6 @@ connectDB()
       console.log(`Error when listening: `, error);
     });
 
-    app.listen(process.env.PORT);
+    app.listen(`${process.env.PORT}`);
   })
   .catch((error) => console.log(error, "MONGODB Connection failed"));

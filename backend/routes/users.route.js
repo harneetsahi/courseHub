@@ -10,13 +10,14 @@ import {
 
 const userRouter = Router();
 
+// userRouter.route("/signup").post(userSignup);
 userRouter.route("/signup").post(userSignup);
 
 userRouter.route("/login").post(userLogin);
 
 userRouter.route("/logout").post(userLogout);
 
-userRouter.use(userAuth);
+userRouter.use(userAuth); /// authenticate user for all following functions
 
 userRouter.route("/allpurchases").get(purchases);
 
