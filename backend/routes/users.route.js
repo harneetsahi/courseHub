@@ -22,6 +22,6 @@ userRouter.use(userAuth); /// authenticate user for all following functions
 
 userRouter.route("/purchase").post(purchaseCourse);
 
-userRouter.route("/allpurchases").get(purchases);
+userRouter.route("/purchases").get(purchases);
 
 export default userRouter;

@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import { z } from "zod";
 import bcrypt from "bcrypt";
 import { PurchaseModel } from "../models/purchases.model.js";
+import { CourseModel } from "../models/courses.model.js";
 
 const userSignup = async (req, res) => {
   // input validation

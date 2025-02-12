@@ -1,7 +1,10 @@
 import jwt from "jsonwebtoken";
 
 function userAuth(req, res, next) {
-  const token = req.headers.token;
+  const authorization = req.headers.authorization;
+
+  const splitAuth = authorization.split(" ");
+  const token = splitAuth[1];
 
   if (!token) {
     return res.json({ message: "Please log in" });

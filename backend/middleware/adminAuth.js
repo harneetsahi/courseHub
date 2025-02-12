@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken";
 
 function adminAuth(req, res, next) {
-  const token = req.headers.token;
+  const authorization = req.headers.authorization;
+  const splitAuth = authorization.split(" ");
+  const token = splitAuth[1];
 
   console.log(token);
 
