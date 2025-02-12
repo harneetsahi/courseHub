@@ -5,8 +5,6 @@ function adminAuth(req, res, next) {
   const splitAuth = authorization.split(" ");
   const token = splitAuth[1];
 
-  console.log(token);
-
   if (!token) {
     return res.json({ message: "Please log in" });
   }

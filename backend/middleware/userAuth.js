@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 
 function userAuth(req, res, next) {
   const authorization = req.headers.authorization;
-
   const splitAuth = authorization.split(" ");
   const token = splitAuth[1];
 
@@ -10,21 +9,15 @@ function userAuth(req, res, next) {
     return res.json({ message: "Please log in" });
   }
 
-  let decodedInfo;
   try {
-    decodedInfo = jwt.verify(token, process.env.JWT_USER_SECRET);
+    const decodedInfo = jwt.verify(token, process.env.JWT_USER_SECRET);
+    req.userId = decodedInfo.id;
+    next();
   } catch (error) {
     console.log("token verification error");
     res.status(401).json({
       message: "Invalid or expired session",
     });
-  }
-
-  if (decodedInfo) {
-    req.userId = decodedInfo.id;
-    next();
-  } else {
-    return res.status(403).json("User not logged in");
   }
 }
 
