@@ -57,8 +57,7 @@ const userSignup = async (req, res) => {
 };
 
 const userLogin = async (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+  const { email, password } = req.body;
 
   try {
     const user = await UserModel.findOne({ email });
@@ -67,7 +66,10 @@ const userLogin = async (req, res) => {
       const matchedPassword = await bcrypt.compare(password, user.password);
 
       if (matchedPassword) {
-        const token = jwt.sign({ id: user._id }, `${process.env.JWT_SECRET}`);
+        const token = jwt.sign(
+          { id: user._id },
+          `${process.env.JWT_USER_SECRET}`
+        );
         return res.json({
           message: token,
         });

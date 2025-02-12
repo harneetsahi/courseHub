@@ -8,6 +8,7 @@ import {
   createCourse,
   deleteCourse,
   editCourse,
+  allCourses,
 } from "../controllers/admins.controller.js";
 
 const adminRouter = Router();
@@ -27,5 +28,7 @@ adminRouter.route("/course").post(createCourse);
 adminRouter.route("/course").delete(deleteCourse);
 
 adminRouter.route("/course").put(editCourse);
+
+adminRouter.route("/course/all").get(allCourses);
 
 export default adminRouter;

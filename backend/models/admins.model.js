@@ -7,7 +7,7 @@ const adminSchema = new Schema(
       required: true,
       trim: true,
     },
-    lasttName: {
+    lastName: {
       type: String,
       required: true,
       trim: true,

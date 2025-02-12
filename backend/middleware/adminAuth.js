@@ -21,7 +21,7 @@ function adminAuth(req, res, next) {
     req.userId = decodedInfo.id;
     next();
   } else {
-    return res.json("User not logged in");
+    return res.status(403).json("User not logged in");
   }
 }
 
