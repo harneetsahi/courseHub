@@ -3,25 +3,21 @@ import jwt from "jsonwebtoken";
 function adminAuth(req, res, next) {
   const token = req.headers.token;
 
+  console.log(token);
+
   if (!token) {
     return res.json({ message: "Please log in" });
   }
 
-  let decodedInfo;
   try {
-    decodedInfo = jwt.verify(token, process.env.JWT_SECRET);
+    const decodedInfo = jwt.verify(token, process.env.JWT_ADMIN_SECRET);
+    req.userId = decodedInfo.id;
+    next();
   } catch (error) {
     console.log("token verification error");
     res.status(401).json({
       message: "Invalid or expired session",
     });
-  }
-
-  if (decodedInfo) {
-    req.userId = decodedInfo.id;
-    next();
-  } else {
-    return res.status(403).json("User not logged in");
   }
 }
 

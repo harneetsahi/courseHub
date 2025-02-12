@@ -167,7 +167,11 @@ const editCourse = async (req, res) => {
       courseId: course._id,
     });
   } catch (error) {
-    res.json("Error updating the course");
+    res.status(400).json({
+      message:
+        "Error updating the course. You are not authorized to update this course",
+      error: error.message,
+    });
   }
 };
 
@@ -178,7 +182,8 @@ const allCourses = async (req, res) => {
     const course = await CourseModel.find({ creatorId: userId });
 
     res.json({
-      message: "Course updated",
+      message: "All your courses",
+      content: course,
       courseId: course._id,
     });
   } catch (error) {
