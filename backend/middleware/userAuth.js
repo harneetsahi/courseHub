@@ -9,7 +9,7 @@ function userAuth(req, res, next) {
 
   let decodedInfo;
   try {
-    decodedInfo = jwt.verify(token, process.env.JWT_SECRET);
+    decodedInfo = jwt.verify(token, process.env.JWT_USER_SECRET);
   } catch (error) {
     console.log("token verification error");
     res.status(401).json({

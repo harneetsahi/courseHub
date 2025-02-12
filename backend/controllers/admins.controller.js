@@ -179,12 +179,12 @@ const allCourses = async (req, res) => {
   const userId = req.userId;
 
   try {
-    const course = await CourseModel.find({ creatorId: userId });
+    const courses = await CourseModel.find({ creatorId: userId });
 
     res.json({
       message: "All your courses",
-      content: course,
-      courseId: course._id,
+      content: courses,
+      courseId: courses._id,
     });
   } catch (error) {
     res.json("Error fetching all courses");
@@ -203,7 +203,7 @@ const deleteCourse = async (req, res) => {
     });
 
     if (course.deletedCount === 0) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "Course not found or you are not the creator",
       });
     }

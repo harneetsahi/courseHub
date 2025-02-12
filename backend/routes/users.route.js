@@ -5,6 +5,7 @@ import {
   userSignup,
   userLogin,
   userLogout,
+  purchaseCourse,
   purchases,
 } from "../controllers/users.controller.js";
 
@@ -18,6 +19,8 @@ userRouter.route("/login").post(userLogin);
 userRouter.route("/logout").post(userLogout);
 
 userRouter.use(userAuth); /// authenticate user for all following functions
+
+userRouter.route("/purchase").post(purchaseCourse);
 
 userRouter.route("/allpurchases").get(purchases);
 

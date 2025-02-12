@@ -2,6 +2,7 @@ import { UserModel } from "../models/users.model.js";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 import bcrypt from "bcrypt";
+import { PurchaseModel } from "../models/purchases.model.js";
 
 const userSignup = async (req, res) => {
   // input validation
@@ -89,11 +90,69 @@ const userLogin = async (req, res) => {
 };
 
 const userLogout = async (req, res) => {
-  const token = req.headers.token;
-
+  // have to first store token in localstorage and then clear it to log out user
+  // const token = req.headers.token;
   // find user id
+  res.json({
+    message: "logout user",
+  });
 };
 
-const purchases = async (req, res) => {};
+///////////!SECTION
 
-export { userSignup, userLogin, userLogout, purchases };
+const purchaseCourse = async (req, res) => {
+  const { userId, courseId } = req.body;
+
+  console.log(userId, courseId);
+
+  if (!userId || !courseId) {
+    return res
+      .status(400)
+      .json({ message: "User ID and Course ID are required" });
+  }
+
+  try {
+    const alreadyPurchased = await PurchaseModel.findOne({ userId, courseId });
+
+    if (alreadyPurchased) {
+      return res
+        .status(400)
+        .json({ message: "You have already bought the course" });
+    }
+
+    const purchase = await PurchaseModel.create({
+      userId,
+      courseId,
+    });
+
+    res.json({
+      message: "You have successfully bought the course",
+      purchaseid: purchase._id,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Could not purchase the course",
+    });
+  }
+};
+
+const purchases = async (req, res) => {
+  const userId = req.userId;
+
+  try {
+    const courses = await PurchaseModel.find({
+      userId,
+    });
+
+    res.json({
+      message: "Here are your purchased courses",
+      courses,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error fetching your courses",
+    });
+  }
+};
+
+export { userSignup, userLogin, userLogout, purchaseCourse, purchases };

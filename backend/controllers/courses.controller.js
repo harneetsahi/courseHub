@@ -1,9 +1,22 @@
 import { CourseModel } from "../models/courses.model.js";
 
-const purchaseCourse = async (req, res) => {};
+const viewAllCourses = async (req, res) => {
+  try {
+    const courses = await CourseModel.find({});
 
-const viewAllCourses = async (req, res) => {};
+    console.log(courses);
+
+    res.json({
+      message: "All the courses",
+      content: courses,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Could not fetch all the coursess",
+    });
+  }
+};
 
 ////////////////////
 
-export { purchaseCourse, viewAllCourses };
+export { viewAllCourses };
